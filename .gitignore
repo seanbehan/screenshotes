@@ -1,5 +1,5 @@
 static/screenshot.png
-static/screenshots
+static/screenshots/*.png
 *.log
 venv
 *.pyc
