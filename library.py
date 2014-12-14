@@ -15,7 +15,7 @@ def take_screenshot(url):
 
     driver = webdriver.PhantomJS(desired_capabilities=dcap)
     driver.get(url)
-    # --ignore-ssl-errors=true --ssl-protocol=any
+    driver.set_page_load_timeout(10)
     driver.set_window_size(1200, 750)
     driver.save_screenshot("static/screenshot.png")
     driver.quit()
