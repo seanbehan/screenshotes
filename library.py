@@ -6,17 +6,6 @@ import os
 import urlparse
 from collections import OrderedDict
 
-# def getenv():
-#     if os.environ.get("FLASK_ENV"):
-#         return "production"
-#     return "development"
-
-def domain():
-    # if getenv()=="production":
-    #     return "http://fullpagescreenshots.com"
-    # else:
-    #     return "http://localhost:5000"
-    "https://fullpagescreenshots.herokuapp.com"
 
 def format_url(url):
     _url = urlparse.urlparse(url)
@@ -50,7 +39,7 @@ def take_screenshot(url):
 
     file_name = "%s.png" % md5(url).hexdigest()
     file_path = "static/screenshots/%s" % file_name
-    full_url = "%s/%s" % (domain(), file_path)
+    full_url = "%s/%s" % ("https://fullpagescreenshots.herokuapp.com", file_path)
 
     driver.save_screenshot(file_path)
     driver.quit()

@@ -1,7 +1,6 @@
-import os
 import json
 from flask import Flask, request, render_template
-from library import take_screenshot, getenv
+from library import take_screenshot
 
 app = Flask(__name__)
 
