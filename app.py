@@ -1,8 +1,9 @@
-import json
+import os, json
 from flask import Flask, request, render_template
 from library import take_screenshot
 
 app = Flask(__name__)
+app.debug = os.environ.get("DEBUG")
 
 @app.route("/")
 def index():
@@ -19,3 +20,7 @@ def screenshot():
         data = take_screenshot(url)
 
     return json.dumps(data), 200, {'Content-Type': 'application/json; charset=utf-8'}
+
+@app.route("/api")
+def api_info():
+    return render_template("api.html")

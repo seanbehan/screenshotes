@@ -1,0 +1,53 @@
+
+{% extends 'layout.html' %}
+{% block main %}
+<div class="row">
+  <div class="one-third column">
+    <h1>API</h1>
+    <p><a href="/">Home</a></p>
+    <p>The API can be used from within an application or straight from the command line.</p>
+    <p>
+      Make a GET request to http://screenshot.es/screenshot?url=example.com
+      replacing the url parameter with the URL you wish to capture.
+    </p>
+    <p>
+      The JSON response will contain meta information about the page and the location of
+      the screenshot png file.
+    </p>
+    <p>
+      Images are saved on the server for a short period of time and are randomly deleted after each request.
+    </p>
+    <p>
+      The screenshot's file name is an md5 hash of the url.
+    </p>
+  </div>
+  <div class="two-thirds column">
+    <br>
+    <br>
+    <br>
+    <br>
+    <pre>
+      curl http://screenshot.es/screenshot?url=http://example.com
+    </pre>
+    <pre style="background:#f8f8f8">
+
+      {
+        "title": "Example Domain",
+        "url": "https://example.com/",
+        "screenshot": {
+          "url": "https://fullpagescreenshots.herokuapp.com/static/screenshots/c984d06aafbecf6bc55569f964148ea3.png",
+          "taken_at": "2014-12-14 22:31:16.757027",
+          "size": 21004
+        }
+      }
+      </pre>
+
+      <div class="center">
+        <small>
+          For additional features, comments or suggestions
+          <a href="mailto:inbox@seanbehan.com?subject=Concerning Screenshot.es">send me an email</a>
+        </small>
+      </div>
+  </div>
+</div>
+{% endblock %}
