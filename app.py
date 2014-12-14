@@ -1,7 +1,9 @@
 from flask import Flask, request
-from library import take_and_save_screen_shot
+from library import take_screenshot
 
 app = Flask(__name__)
+# app.config['DEBUG'] = True
+
 
 @app.route("/")
 def index():
