@@ -3,11 +3,17 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from hashlib import md5
 from collections import OrderedDict
 import os, datetime, urlparse
+import requests
 
 def format_url(url):
     _url = urlparse.urlparse(url)
     if '' == _url.scheme:
-        return 'http://%s' % url
+        try:
+            https_url = 'https://%s' % url
+            requests.head(https_url)
+            return https_url
+        except:
+            return 'http://%s' % url
     return url
 
 def take_screenshot(url):
