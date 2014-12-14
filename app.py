@@ -11,6 +11,6 @@ def index():
 @app.route("/screenshot")
 def screenshot():
     if request.args['url']:
-        take_and_save_screen_shot(request.args['url'])
+        take_screenshot(request.args['url'])
 
     return "Saved"

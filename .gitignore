@@ -1,3 +1,6 @@
+static/screenshot.png
+static/screenshots
+*.log
 venv
 *.pyc
 
