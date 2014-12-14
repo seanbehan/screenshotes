@@ -6,16 +6,17 @@ import os
 import urlparse
 from collections import OrderedDict
 
-def getenv():
-    if os.environ.get("FLASK_ENV"):
-        return "production"
-    return "development"
+# def getenv():
+#     if os.environ.get("FLASK_ENV"):
+#         return "production"
+#     return "development"
 
 def domain():
-    if getenv()=="production":
-        return "http://fullpagescreenshots.com"
-    else:
-        return "http://localhost:5000"
+    # if getenv()=="production":
+    #     return "http://fullpagescreenshots.com"
+    # else:
+    #     return "http://localhost:5000"
+    "https://fullpagescreenshots.herokuapp.com"
 
 def format_url(url):
     _url = urlparse.urlparse(url)
