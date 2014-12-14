@@ -19,7 +19,3 @@ def screenshot():
         data = take_screenshot(url)
 
     return json.dumps(data), 200, {'Content-Type': 'application/json; charset=utf-8'}
-
-# if getenv()=="development":
-#     if __name__ == "__main__":
-#         app.run(debug=True)

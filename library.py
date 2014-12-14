@@ -1,11 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from hashlib import md5
-import datetime
-import os
-import urlparse
 from collections import OrderedDict
-
+import os, datetime, urlparse
 
 def format_url(url):
     _url = urlparse.urlparse(url)
@@ -39,12 +36,11 @@ def take_screenshot(url):
 
     file_name = "%s.png" % md5(url).hexdigest()
     file_path = "static/screenshots/%s" % file_name
-    full_url = "%s/%s" % ("https://fullpagescreenshots.herokuapp.com", file_path)
+    full_url = "%s/%s" % (os.environ.get("DOMAIN"), file_path)
 
     driver.save_screenshot(file_path)
     driver.quit()
 
-    # data["screenshot"]["file"] = file_name
     data["screenshot"]["url"] = full_url
     data["screenshot"]["taken_at"] = str(datetime.datetime.now())
     data["screenshot"]["size"] = os.path.getsize(str(file_path))
