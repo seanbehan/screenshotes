@@ -21,8 +21,8 @@ def take_screenshot(url):
     )
     # dcap["phantomjs.cli.jargs"] = ("--web-security=false --ignore-ssl-errors=true --ssl-protocol=any")
     dcap['init.service_args'] = ('--web-security=false', '--ignore-ssl-errors=true', '--ssl-protocol=any')
-
-    driver = webdriver.PhantomJS(desired_capabilities=dcap,service_args=['--ignore-ssl-errors=true', '--ssl-protocol=tlsv1'])
+    # --ssl-protocol=tlsv1
+    driver = webdriver.PhantomJS(desired_capabilities=dcap,service_args=['--ignore-ssl-errors=true', '--ssl-protocol=any', '--web-security=false'])
     driver.get(url)
     data["title"] = driver.title
 
