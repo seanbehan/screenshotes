@@ -19,9 +19,10 @@ def take_screenshot(url):
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/53 "
         "(KHTML, like Gecko) Chrome/15.0.87"
     )
-    dcap["phantomjs.cli.args"] = (
-    "--web-security=false --ignore-ssl-errors=true --ssl-protocol=any"
-    )
+    # dcap["phantomjs.cli.jargs"] = (
+    # "--web-security=false --ignore-ssl-errors=true --ssl-protocol=any"
+    # )
+    dcap['init.service_args'] = ('--web-security=false', '--ignore-ssl-errors=true', '--ssl-protocol=any')
 
     driver = webdriver.PhantomJS(desired_capabilities=dcap)
     driver.get(url)
