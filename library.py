@@ -10,7 +10,7 @@ def format_url(url):
     if '' == _url.scheme:
         try:
             https_url = 'https://%s' % url
-        requests.head(https_url)
+            requests.head(https_url)
             return https_url
         except:
             return 'http://%s' % url
