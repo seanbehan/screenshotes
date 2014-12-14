@@ -19,19 +19,15 @@ def take_screenshot(url):
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/53 "
         "(KHTML, like Gecko) Chrome/15.0.87"
     )
-    # dcap["phantomjs.cli.jargs"] = (
-    # "--web-security=false --ignore-ssl-errors=true --ssl-protocol=any"
-    # )
+    # dcap["phantomjs.cli.jargs"] = ("--web-security=false --ignore-ssl-errors=true --ssl-protocol=any")
     dcap['init.service_args'] = ('--web-security=false', '--ignore-ssl-errors=true', '--ssl-protocol=any')
 
-    driver = webdriver.PhantomJS(desired_capabilities=dcap)
+    driver = webdriver.PhantomJS(desired_capabilities=dcap,service_args=['--ignore-ssl-errors=true', '--ssl-protocol=tlsv1'])
     driver.get(url)
-    # document_title = driver.title
     data["title"] = driver.title
 
     driver.set_page_load_timeout(10)
     driver.set_window_size(1200, 750)
-    # document_url = driver.current_url
     data["url"] = driver.current_url
     data["screenshot"] = {}
 

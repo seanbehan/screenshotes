@@ -50,7 +50,7 @@
     $(document).ready(function(){
       $("form").submit(function(e){
         $("#document_title").html('<img src="/static/spinner.gif" alt="" />');
-
+        $("button").text("Fetching...")
         e.preventDefault()
         $("#display,pre").html("")
 
@@ -64,6 +64,7 @@
             $("pre").text(jsonPretty)
             $("#display").html($("<img class='preview'/>").attr("src", resp.screenshot.url))
             $("#document_title").text("");
+            $("button").text("Fetch Again")
           }
         })
       })
