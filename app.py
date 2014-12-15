@@ -12,7 +12,7 @@ def index():
 @app.route("/screenshot")
 def screenshot():
     url = str(request.args['url'])
-    if "fullpagescreenshots" in url:
+    if "screenshot.es" in url:
         return "Sorry, not allowed", 405
 
     data = {}
