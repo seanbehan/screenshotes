@@ -41,6 +41,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
+  $("#url").focus()
   $("form").submit(function(e){
     $("#document_title").html('<img src="/static/spinner.gif" alt="" />');
     $("button").text("Fetching...")
