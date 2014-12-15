@@ -3,9 +3,9 @@
 {% block main %}
 <div class="row">
   <div class="twelve columns center">
-    <h1>Full Page Screenshots</h1>
+    <h1>Screenshot.es</h1>
     <p class="gray">
-      Type in a url and we'll serve up an image of it.
+      Type in a url and we'll return a screenshot
     </p>
   </div>
 
@@ -62,6 +62,9 @@ $(document).ready(function(){
       }
     })
   })
+  $("body").on("click", ".preview", function(e){
+    location.href = $(this).attr("src")
+  });
 });
 </script>
 {% endblock %}
