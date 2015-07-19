@@ -5,6 +5,7 @@ from collections import OrderedDict
 import os, datetime, urlparse
 import requests
 from os import environ as env
+from uuid import uuid4
 
 def _url(url):
     if url.startswith('http'):
@@ -39,7 +40,7 @@ def take_screenshot(opts):
     data["url"] = driver.current_url
     data["screenshot"] = {}
 
-    file_name = "%s.png" % md5(url).hexdigest()
+    file_name = "%s.png" % str(uuid4()) # md5(url).hexdigest()
     file_path = "static/screenshots/%s" % file_name
     full_url = "%s/%s" % (env.get("DOMAIN", 'http://localhost:5555'), file_path)
 

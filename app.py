@@ -12,9 +12,12 @@ def index():
 @app.route("/screenshot")
 def screenshot():
     url = request.args.get('url', None)
-    width = request.args.get('width', 1200)
-    height = request.args.get('height', 750)
+    width = request.args.get('width', '')
+    height = request.args.get('height', '')
     background = request.args.get('background', None)
+
+    if not width: width = 1200
+    if not height: height = 750
 
     opts = dict(
         url=url,
