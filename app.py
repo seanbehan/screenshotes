@@ -12,8 +12,8 @@ def index():
 @app.route("/screenshot")
 def screenshot():
     url = request.args.get('url', None)
-    width = request.args.get('width', None)
-    height = request.args.get('height', None)
+    width = request.args.get('width', 1200)
+    height = request.args.get('height', 750)
     background = request.args.get('background', None)
 
     opts = dict(
@@ -29,8 +29,6 @@ def screenshot():
     return jsonify(
         take_screenshot(opts)
     )
-    # return take_screenshot(url, dict(url=url, width=width, height=height, background=background))
-    # return json.dumps(data), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
 @app.route("/api")
 def api_info():

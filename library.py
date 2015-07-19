@@ -4,22 +4,24 @@ from hashlib import md5
 from collections import OrderedDict
 import os, datetime, urlparse
 import requests
+from os import environ as env
 
-def format_url(url):
-    _url = urlparse.urlparse(url)
-    if '' == _url.scheme:
-        try:
-            https_url = 'https://%s' % url
-            requests.head(https_url)
-            return https_url
-        except:
-            return 'http://%s' % url
-    return url
+def _url(url):
+    if url.startswith('http'):
+        return url
+    try:
+        _https = 'https://%s' % url
+        requests.head(_https)
+        return _https
+    except:
+        pass
+    return 'http://%s' % url
 
 def take_screenshot(opts):
-    url = opts['url']
+    url = _url(opts['url'])
+    width, height = opts['width'], opts['height']
+    background = opts['background']
 
-    url = format_url(url)
     data = OrderedDict()
 
     dcap = dict(DesiredCapabilities.PHANTOMJS)
@@ -27,21 +29,27 @@ def take_screenshot(opts):
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/53 "
         "(KHTML, like Gecko) Chrome/15.0.87"
     )
-    # dcap["phantomjs.cli.jargs"] = ("--web-security=false --ignore-ssl-errors=true --ssl-protocol=any")
     dcap['init.service_args'] = ('--web-security=false', '--ignore-ssl-errors=true', '--ssl-protocol=any')
-    # --ssl-protocol=tlsv1
     driver = webdriver.PhantomJS(desired_capabilities=dcap,service_args=['--ignore-ssl-errors=true', '--ssl-protocol=any', '--web-security=false'])
     driver.get(url)
-    data["title"] = driver.title
-
     driver.set_page_load_timeout(10)
-    driver.set_window_size(1200, 750)
+    driver.set_window_size(width, height)
+
+    data["title"] = driver.title
     data["url"] = driver.current_url
     data["screenshot"] = {}
 
     file_name = "%s.png" % md5(url).hexdigest()
     file_path = "static/screenshots/%s" % file_name
-    full_url = "%s/%s" % (os.environ.get("DOMAIN"), file_path)
+    full_url = "%s/%s" % (env.get("DOMAIN", 'http://localhost:5555'), file_path)
+
+    if background:
+        driver.execute_script("""(function() {
+            var style = document.createElement('style'), text = document.createTextNode('body { background: %s }');
+            style.setAttribute('type', 'text/css');
+            style.appendChild(text);
+            document.head.insertBefore(style, document.head.firstChild);
+        })();""" % background)
 
     driver.save_screenshot(file_path)
     driver.quit()

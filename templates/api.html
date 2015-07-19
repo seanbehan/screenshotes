@@ -26,20 +26,18 @@
     <br>
     <br>
     <br>
-    <pre>
-      curl http://www.screenshot.es/screenshot?url=http://example.com
-    </pre>
-    <pre style="background:#f8f8f8">
+    <pre>curl "http://www.screenshot.es/screenshot?url=http://example.com"</pre>
+<pre style="background:#f8f8f8">
 
-      {
-        "title": "Example Domain",
-        "url": "https://example.com/",
-        "screenshot": {
-          "url": "https://www.screenshot.es/static/screenshots/c984d06aafbecf6bc55569f964148ea3.png",
-          "taken_at": "2014-12-14 22:31:16.757027",
-          "size": 21004
-        }
-      }
+  {
+    "title": "Example Domain",
+    "url": "https://example.com/",
+    "screenshot": {
+      "url": "https://www.screenshot.es/static/screenshots/c984d06aafbecf6bc55569f964148ea3.png",
+      "taken_at": "2014-12-14 22:31:16.757027",
+      "size": 21004
+    }
+  }
       </pre>
 
       <div class="center">
@@ -47,6 +45,26 @@
           For additional features, comments or suggestions
           <a href="mailto:sean@screenshot.es?subject=Concerning Screenshot.es">send me an email</a>
         </small>
+      </div>
+
+      <br>
+
+      <div class="">
+        <h3>Additional Arguments</h3>
+        <p>
+          You can set <b>width</b>, <b>height</b> and <b>background</b> parameters.
+        </p>
+        <p>
+          The <b>width</b> and <b>height</b> set the dimensions of the browser window before snapping the screenshot.
+        </p>
+        <p>
+          The <b>background</b> param sets the background color. By default, the background is transparent. The
+          background color must be a valid CSS color. E.g., white, black, #fefefe... etc.
+        </p>
+        <h4>Usave</h4>
+        <pre>
+curl "http://www.screenshot.es/screenshot?url=http://example.com&width=200&height=200&background=white"
+        </pre>
       </div>
   </div>
 </div>

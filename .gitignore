@@ -3,4 +3,4 @@ static/screenshots/*.png
 *.log
 venv
 *.pyc
-
+.DS_Store

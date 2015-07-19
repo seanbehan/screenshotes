@@ -12,9 +12,20 @@
   <div class="twelve columns center">
     <form action="">
       <input type="text" class="u-full-width center" id="url" name="url" value="" placeholder="http://example.com" autocomplete="Off">
+
+      <div class="hide advanced">
+        <input type="text" name="width" value="" id="width" placeholder="Width">
+        <input type="text" name="height" value="" id="height" placeholder="Height">
+        <input type="text" name="background" value="" id="background" placeholder="Background color">
+      </div>
+
       <button>
         Fetch Screenshot
       </button>
+
+      <p>
+        <a href="#advanced" onclick="$('.advanced').slideToggle()">Advanced options</a>
+      </p>
     </form>
   </div>
 </div>
@@ -51,7 +62,12 @@ $(document).ready(function(){
     $.ajax({
       method: "GET",
       url: "/screenshot",
-      data: $.param({url: $("#url").val()}),
+      data: $.param({
+        url: $("#url").val(),
+        width: $("#width").val(),
+        height: $("#height").val(),
+        background: $("#background").val()
+      }),
       success: function(resp){
         var jsonString = JSON.stringify(resp);
         var jsonPretty = JSON.stringify(JSON.parse(jsonString),null,2);
