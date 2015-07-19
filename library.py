@@ -16,7 +16,9 @@ def format_url(url):
             return 'http://%s' % url
     return url
 
-def take_screenshot(url):
+def take_screenshot(opts):
+    url = opts['url']
+
     url = format_url(url)
     data = OrderedDict()
 
